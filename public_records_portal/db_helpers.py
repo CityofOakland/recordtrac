@@ -17,7 +17,6 @@ import os
 import logging
 
 
-
 ### @export "authenticate_login"
 def authenticate_login(email, password):
 	if email:
@@ -43,7 +42,6 @@ def set_random_password(email):
 		db.session.commit()
 		return password
 	return None
-
 
 ### @export "get_subscriber"
 def get_subscriber(request_id, user_id):

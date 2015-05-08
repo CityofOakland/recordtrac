@@ -72,9 +72,6 @@ This template provides the header, footer, and envelope info for all pages excep
                     <!-- <li><a href="/admin">Admin</a></li> -->
                     <li><a href="/about">About</a></li>
                   </ul>
-                  <ul class="nav pull-right">
-                    <li><button id="browserid-logout" class="btn">{{config['AGENCY_NAME']}} Logout</button></li>
-                  </ul>
                 {% else %}
                   <ul class="nav tabs">
                     <li><a href="/new">New request</a></li>
@@ -82,12 +79,60 @@ This template provides the header, footer, and envelope info for all pages excep
                     <li><a href="/track">Track</a></li>
                     <li><a href="/about">About</a></li>
                   </ul>
-                  <ul class="nav pull-right">
-                    <li><button id="browserid-login" class="btn">{{config['AGENCY_NAME']}} Login</button></li>
-                  </ul>
                 {% endif %}
             </div>
 
+<<<<<<< HEAD
+=======
+                        <!-- Login area -->
+            {% if current_user.is_authenticated() %}
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ "alias" | get_attribute(user_id, "User") }} <strong class="caret"></strong></a>
+                <div id="logout-dropdown" class="dropdown-menu" >
+            
+                  <!-- Logout form here -->
+                  <form class="form-horizontal" id="logoutForm" action="/logout">
+                    <input id="logout_form" type="submit" value="Logout" title="logout_button" class="pull-right btn btn-link"/>
+                  </form>
+
+                </div>
+              </li>
+            </ul>
+
+            {% else %}
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{config['AGENCY_NAME']}} login <strong class="caret"></strong></a>
+                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+               
+                <!-- Login form here -->
+                  <form class="form-horizontal" method="post" id="loginForm" action="/login">
+                    <!-- <div class="control-group"> -->
+                      <label>Email</label>
+                      <!-- <div class="controls"> -->
+                        <input type="text" class="input-medium" name="email" title="input_email" placeholder="you@email.com">
+                      <!-- </div> -->
+                    <!-- </div> -->
+                    <!-- <div class="control-group"> -->
+                      <label>Password</label>
+                      <!-- <div class="controls"> -->
+                        <input type="password" class="input-small" name="password" title="input_password" placeholder="password">
+                      <!-- </div> -->
+                    <!-- </div> -->
+                    <!-- <div class="control-group"> -->
+                      <!-- <div class="controls"> -->
+                        <input type="submit" value="City login" title="login_button" class="btn"/>
+                      <!-- </div> -->
+                   <!--  </div> -->
+                  </form>
+
+                </div>
+              </li>
+            </ul>
+            {% endif %}
+          
+>>>>>>> Adding non-Persona login functionality back in
 
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse collapse">
