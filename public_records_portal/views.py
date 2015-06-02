@@ -137,6 +137,10 @@ def new_request(passed_recaptcha = False, data = None):
 			if date_received != "":
 				try:
 					date_received = datetime.strptime(date_received, '%m/%d/%Y')
+					tz = pytz.timezone(app.config['TIMEZONE'])
+					offset = tz.utcoffset(datetime.now())
+					offset = (offset.days * 86400 + offset.seconds) / 3600
+					date_received = date_received - timedelta(hours = offset) # This is somewhat of a hack, but we need to get this back in UTC time but still treat it as a 'naive' datetime object
 				except ValueError:
 					return render_template('error.html', message = "Please use the datepicker to select a date.")
 				if date_received.date() > date.today():
