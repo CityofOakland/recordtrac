@@ -15,6 +15,7 @@ from prr import add_resource, update_resource, make_request, close_request
 from db_helpers import get_user_by_id # finds a user by their id
 from db_helpers import get_user # finds a user based on BrowserID response
 from db_helpers import authenticate_login
+from db_helpers import get_viz_data
 import os, json
 from urlparse import urlparse, urljoin
 from notifications import send_prr_email, format_date
@@ -182,7 +183,14 @@ def index():
 
 @app.route("/landing")
 def landing():
-	return render_template('landing.html')
+	viz_data_freq, viz_data_time = get_viz_data()
+	return render_template('landing.html', viz_data_freq = json.dumps(viz_data_freq), viz_data_time = json.dumps(viz_data_time), user_id = get_user_id())
+
+@app.route("/viz")
+def viz():
+	viz_data_freq, viz_data_time = get_viz_data()
+	return render_template('viz.html', viz_data_freq = json.dumps(viz_data_freq), viz_data_time = json.dumps(viz_data_time))
+
 
 @login_manager.unauthorized_handler
 def unauthorized():

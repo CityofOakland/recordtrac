@@ -59,7 +59,7 @@ $(function(){
 
     var margin = {top: 30, right: 40, bottom: 30, left: 40},
         height = 250 - margin.top - margin.bottom,
-        width = $('#responses-freq-viz').parent().width() - margin.left - margin.right;
+        width = 550;
 
     $('#responses-freq-viz').parents('.well').height(height + 270);
 
@@ -153,7 +153,7 @@ $(function() {
 
     var marginHoriz = {top: 30, right: 20, bottom: 30, left: 90},
         height = 250 - marginHoriz.top - marginHoriz.bottom,
-        width = $('#responses-time-viz').parent().width() - marginHoriz.left - marginHoriz.right;
+        width = 550;
 
     var xResponseTime = d3.scale.linear()
         .range([0, width]);
