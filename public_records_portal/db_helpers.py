@@ -21,7 +21,7 @@ import logging
 def authenticate_login(email, password):
 	if email:
 		user = User.query.filter_by(email = email).first()
-		if user and (user.is_staff or user.is_admin()):
+		if user:
 			if user.check_password(password):
 				return user
 			if user.password == password: # Hash it
@@ -398,7 +398,7 @@ def create_viz_data():
 	depts_freq.sort(key = lambda x:x['freq'], reverse = True)
 	depts_response_fastest_time = list(depts_response_time)
 	depts_response_time.sort(key = lambda x:x['time'], reverse = True)
-	depts_response_fastest_time.sort(key = lambda x:x['time']) 
+	depts_response_fastest_time.sort(key = lambda x:x['time'])
 	del depts_freq[5:]
 	del depts_response_time[5:]
 	del depts_response_fastest_time[5:]
