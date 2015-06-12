@@ -36,9 +36,9 @@ class HomeView(AdminIndexView):
     def home(self):
         return self.render('admin.html')
     def is_accessible(self):
-        if current_user.is_authenticated():
-            return current_user.is_admin()
-        return False
+		if current_user.is_authenticated():
+			return current_user.is_admin()
+		return False
 
 # Create Admin
 admin = Admin(app, name='RecordTrac Admin', url='/admin', index_view = HomeView(name='Home'))
@@ -108,6 +108,7 @@ class DepartmentView(AdminView):
         'description': do_mark_safe(column_descriptions['backup_contact'])
     })
     column_searchable_list = ('name',)
+
 
 admin.add_view(RequestView(models.Request, db.session))
 admin.add_view(RecordView(models.Record, db.session))
