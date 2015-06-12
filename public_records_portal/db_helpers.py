@@ -21,7 +21,7 @@ import logging
 def authenticate_login(email, password):
 	if email:
 		user = User.query.filter_by(email = email).first()
-		if user:
+		if user and (user.is_staff or user.is_admin()):
 			if user.check_password(password):
 				return user
 			if user.password == password: # Hash it
