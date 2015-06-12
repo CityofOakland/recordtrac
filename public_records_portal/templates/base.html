@@ -88,7 +88,7 @@ This template provides the header, footer, and envelope info for all pages excep
             {% if current_user.is_authenticated() %}
             <ul class="nav pull-right">
               <li class="dropdown">
-                <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ "alias" | get_attribute(user_id, "User") }} <strong class="caret"></strong></a>
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ current_user.alias }} <strong class="caret"></strong></a>
                 <div id="logout-dropdown" class="dropdown-menu" >
             
                   <!-- Logout form here -->
