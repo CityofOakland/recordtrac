@@ -114,6 +114,19 @@ def get_owners_by_user_id(user_id):
 		return None
 	return Owner.query.filter_by(user_id = user_id)
 
+### @export "get_depts_with_contacts"
+def get_depts_with_contacts():
+	""" Return a list of departments that have corresponding contacts """
+	departments = []
+	users = User.query.filter(User.is_staff == True).all()
+	for u in users:
+		if u.contact_for:
+			contacts = u.contact_for.split(',')
+			for contact in contacts:
+				departments.append(contact)
+	departments.sort()
+	return departments
+
 ### @export "get_prr_liaison_by_dept"
 def get_contact_by_dept(dept):
 	""" Return the contact for a given department. """

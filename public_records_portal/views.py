@@ -16,6 +16,7 @@ from db_helpers import get_user_by_id # finds a user by their id
 from db_helpers import get_user # finds a user based on BrowserID response
 from db_helpers import authenticate_login
 from db_helpers import get_viz_data
+from db_helpers import get_depts_with_contacts
 import os, json
 from urlparse import urlparse, urljoin
 from notifications import send_prr_email, format_date
@@ -158,7 +159,7 @@ def new_request(passed_recaptcha = False, data = None):
 		routing_available = False
 		if 'LIAISONS_URL' in app.config:
 			routing_available = True
-			departments = db.session.query(models.Department).all()
+			departments = get_depts_with_contacts()
 		if current_user.is_authenticated():
 			return render_template('offline_request.html', routing_available = routing_available, departments = departments)
 		else:
@@ -432,7 +433,8 @@ def display_all_requests():
 
 @app.route("/view_requests_backbone")
 def backbone_requests():
-	return render_template("all_requests.html", departments = db.session.query(models.Department).all(), total_requests_count = get_count("Request"))
+	departments = get_depts_with_contacts()
+	return render_template("all_requests.html", departments = departments, total_requests_count = get_count("Request"))
 
 @app.route("/view_requests_no_backbone")
 def no_backbone_requests():
@@ -515,10 +517,14 @@ def fetch_requests(output_results_only = False, filters_map = None, date_format 
 	if output_results_only == True:
 		return requests, num_results, more_results, start_index, end_index
 
+<<<<<<< HEAD
 	template = "all_requests_less_js.html"
 	if is_supported_browser():
 		template = "all_requests.html"
 	return render_template(template, total_requests_count = get_count("Request"), requests = requests, departments = db.session.query(models.Department).all(), departments_selected = departments_selected, is_open = is_open, is_closed = is_closed, due_soon = due_soon, overdue = overdue, mine_as_poc = mine_as_poc, mine_as_helper = mine_as_helper, sort_column = sort_column, sort_direction = sort_direction, search_term = search_term, min_due_date = min_due_date, max_due_date = max_due_date, min_date_received = min_date_received, max_date_received = max_date_received, requester_name = requester_name, page_number = page_number, more_results = more_results, num_results = num_results, start_index = start_index, end_index = end_index)
+=======
+	return render_template("all_requests_less_js.html", total_requests_count = get_count("Request"), requests = requests, departments = get_depts_with_contacts(), departments_selected = departments_selected, is_open = is_open, is_closed = is_closed, due_soon = due_soon, overdue = overdue, mine_as_poc = mine_as_poc, mine_as_helper = mine_as_helper, sort_column = sort_column, sort_direction = sort_direction, search_term = search_term, min_due_date = min_due_date, max_due_date = max_due_date, min_date_received = min_date_received, max_date_received = max_date_received, requester_name = requester_name, page_number = page_number, more_results = more_results, num_results = num_results, start_index = start_index, end_index = end_index)
+>>>>>>> Only display departments with contacts across site
 
 @app.route("/custom/request", methods = ["GET", "POST"])
 def json_requests():
