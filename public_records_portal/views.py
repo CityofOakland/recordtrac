@@ -707,7 +707,7 @@ def reset_password(email=None):
 	if request.method == 'POST':
 		after_reset = True
 		email = request.form['email']
-		password = set_random_password(email)
+		password = db_helpers.set_random_password(email)
 		if password:
 			send_prr_email(page = app.config['APPLICATION_URL'], recipients = [email], subject = "Your temporary password", template = "password_email.html", include_unsubscribe_link = False, password = password)
 			reset_success = True
