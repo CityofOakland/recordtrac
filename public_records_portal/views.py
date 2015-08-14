@@ -281,10 +281,10 @@ def staff_to_json():
 
 @app.route("/api/departments")
 def departments_to_json():
-	departments = models.Department.query.all()
+	departments = get_depts_with_contacts()
 	department_data = []
 	for d in departments:
-		department_data.append({'department': d.name})
+		department_data.append({'department': d})
 	return jsonify(**{'objects': department_data})
 
 def docs():
