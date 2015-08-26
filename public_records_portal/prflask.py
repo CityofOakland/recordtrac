@@ -90,8 +90,9 @@ class NoteView(AdminView):
 class UserView(AdminView):
     can_create = True
     can_edit = True
-    column_list = ('alias', 'email', 'current_department', 'phone', 'is_staff')
-    column_labels = dict(alias='Name', current_department='Department', phone='Phone #')
+    column_list = ('alias', 'email', 'phone', 'is_staff')
+    form_columns = column_list
+    column_labels = dict(alias='Name', phone='Phone #')
     column_descriptions = dict(is_staff='Determines whether the user can log in and edit data through this interface.')
     form_excluded_columns = ('date_created', 'password', 'contact_for', 'backup_for')
     column_searchable_list = ('alias', 'email', 'phone')
@@ -101,7 +102,6 @@ class DepartmentView(AdminView):
     can_edit = True
     column_list = ('name', 'primary_contact', 'backup_contact')
     column_descriptions = dict(backup_contact='Note that if you want to assign a user that does not yet exist as the primary or backup contact for this department, you must <a href="/admin/userview/new/?url=%2Fadmin%2Fdepartmentview%2Fnew%2F">create the user</a> first.')
-
     form_columns = column_list
     form_excluded_columns = ('date_created', 'date_updated')
     form_args = dict(backup_contact={

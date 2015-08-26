@@ -77,7 +77,7 @@ class User(db.Model):
 	def __repr__(self):
 		return '<User %r>' % self.email
 	def __str__(self):
-		return self.email
+		return self.email or ''
 	def department_name(self):
 		if self.current_department and self.current_department.name:
 			return self.current_department.name
@@ -100,9 +100,7 @@ class Department(db.Model):
 	date_created = db.Column(db.DateTime)
 	date_updated = db.Column(db.DateTime)
 	name = db.Column(db.String(), unique=True)
-	users = relationship("User", foreign_keys=[User.department_id], post_update=True) # The list of users in this department
 	requests = relationship("Request", order_by = "Request.date_created.asc()") # The list of requests currently associated with this department
-
 	primary_contact_id = db.Column(Integer, ForeignKey("user.id"))
 	backup_contact_id = db.Column(Integer, ForeignKey("user.id"))
 	primary_contact = relationship(User,
