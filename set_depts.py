@@ -6,9 +6,11 @@ for u in users:
     primary_contacts = u.contact_for.split(',')
     for department_name in primary_contacts:
       department = models.Department.query.filter_by(name = department_name).first()
-      if department:
-        department.primary_contact_id = u.id
-        db.session.add(department)
+      if not department:
+        department = models.Department(name = department_name)
+      department.primary_contact_id = u.id
+      db.session.add(department)
+
   if u.backup_for:
     primary_backups = u.backup_for.split(',')
     for department_name in primary_backups:
