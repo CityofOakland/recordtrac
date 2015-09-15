@@ -522,6 +522,7 @@ def fetch_requests(output_results_only = False, filters_map = None, date_format 
 		return requests, num_results, more_results, start_index, end_index
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	template = "all_requests_less_js.html"
 	if is_supported_browser():
 		template = "all_requests.html"
@@ -529,6 +530,12 @@ def fetch_requests(output_results_only = False, filters_map = None, date_format 
 =======
 	return render_template("all_requests_less_js.html", total_requests_count = get_count("Request"), requests = requests, departments = get_depts_with_contacts(), departments_selected = departments_selected, is_open = is_open, is_closed = is_closed, due_soon = due_soon, overdue = overdue, mine_as_poc = mine_as_poc, mine_as_helper = mine_as_helper, sort_column = sort_column, sort_direction = sort_direction, search_term = search_term, min_due_date = min_due_date, max_due_date = max_due_date, min_date_received = min_date_received, max_date_received = max_date_received, requester_name = requester_name, page_number = page_number, more_results = more_results, num_results = num_results, start_index = start_index, end_index = end_index)
 >>>>>>> Only display departments with contacts across site
+=======
+	template = "all_requests_less_js.html"
+	if is_supported_browser():
+		template = "all_requests.html"
+	return render_template(template, total_requests_count = get_count("Request"), requests = requests, departments = get_depts_with_contacts(), departments_selected = departments_selected, is_open = is_open, is_closed = is_closed, due_soon = due_soon, overdue = overdue, mine_as_poc = mine_as_poc, mine_as_helper = mine_as_helper, sort_column = sort_column, sort_direction = sort_direction, search_term = search_term, min_due_date = min_due_date, max_due_date = max_due_date, min_date_received = min_date_received, max_date_received = max_date_received, requester_name = requester_name, page_number = page_number, more_results = more_results, num_results = num_results, start_index = start_index, end_index = end_index)
+>>>>>>> Fix requests endpoint
 
 @app.route("/custom/request", methods = ["GET", "POST"])
 def json_requests():
