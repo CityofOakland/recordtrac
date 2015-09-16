@@ -27,6 +27,18 @@ This template provides the header, footer, and envelope info for all pages excep
   <!-- modernizr -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/modernizr-latest-min.js') }}"></script>
 
+  <!-- google analytics -->
+    <!-- for later: guide to add event-driven analytics http://www.sitepoint.com/google-analytics-track-javascript-ajax-events/ -->
+    <script>
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41730935-1', 'herokuapp.com');
+    ga('send', 'pageview');
+    </script>
 
   <!-- auth_script requires jquery and Mozilla's 'include.js' shim -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-1.11.1.min.js') }}"></script>
@@ -82,15 +94,13 @@ This template provides the header, footer, and envelope info for all pages excep
                 {% endif %}
             </div>
 
-<<<<<<< HEAD
-=======
                         <!-- Login area -->
             {% if current_user.is_authenticated() %}
             <ul class="nav pull-right">
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ current_user.alias }} <strong class="caret"></strong></a>
                 <div id="logout-dropdown" class="dropdown-menu" >
-            
+
                   <!-- Logout form here -->
                   <form class="form-horizontal" id="logoutForm" action="/logout">
                     <input id="logout_form" type="submit" value="Logout" title="logout_button" class="pull-right btn btn-link"/>
@@ -105,7 +115,7 @@ This template provides the header, footer, and envelope info for all pages excep
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{config['AGENCY_NAME']}} login <strong class="caret"></strong></a>
                 <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-               
+
                 <!-- Login form here -->
                   <form class="form-horizontal" method="post" id="loginForm" action="/login">
                     <!-- <div class="control-group"> -->
@@ -131,8 +141,7 @@ This template provides the header, footer, and envelope info for all pages excep
               </li>
             </ul>
             {% endif %}
-          
->>>>>>> Adding non-Persona login functionality back in
+
 
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse collapse">
