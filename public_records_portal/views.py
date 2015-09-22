@@ -17,6 +17,7 @@ from db_helpers import get_user # finds a user based on BrowserID response
 from db_helpers import authenticate_login
 from db_helpers import get_viz_data
 from db_helpers import get_depts_with_contacts
+from db_helpers import create_or_return_user
 import os, json
 from urlparse import urlparse, urljoin
 from notifications import send_prr_email, format_date
