@@ -60,6 +60,8 @@ envvars = [
 			'SECRET_KEY', # Flask app secret key
 			'SCRIBD_API_KEY',
 			'SCRIBD_API_SECRET',
+			'SCRIBD_USERNAME',
+			'ADMIN_PASSWORD',
 			'AKISMET_KEY', # Used for spam filtering
 			'RECAPTCHA_PUBLIC_KEY',
 			'RECAPTCHA_PRIVATE_KEY',
