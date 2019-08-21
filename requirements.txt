@@ -5,7 +5,7 @@ Flask-Login==0.2.11
 Flask-WTF==0.8.3
 Jinja2==2.6
 SQLAlchemy==0.9.3
-Werkzeug==0.8.3
+Werkzeug==0.15.3
 psycopg2==2.4.6
 https://python-scribd.googlecode.com/files/python-scribd-1.2.0.zip
 sendgrid==0.1.3
